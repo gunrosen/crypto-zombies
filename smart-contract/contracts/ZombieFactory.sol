@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "hardhat/console.sol";
 
-contract ZombieFactory is Ownable{
+contract ZombieFactory is Ownable {
     using SafeMath for uint256;
 
     event NewZombie(uint zombieId, string name, uint dna);
@@ -26,7 +26,7 @@ contract ZombieFactory is Ownable{
     Zombie[] public zombies;
 
     mapping(uint => address) public zombieToOwner;
-    mapping (address => uint) ownerZombieCount;
+    mapping(address => uint) ownerZombieCount;
 
     function _createZombie(string memory _name, uint _dna) internal {
         zombies.push(Zombie(_name, _dna, 1, uint(block.timestamp + cooldownTime), 0, 0));
@@ -47,6 +47,11 @@ contract ZombieFactory is Ownable{
         uint randDna = _generateRandomDna(_name);
         randDna = randDna - randDna % 100;
         _createZombie(_name, randDna);
+    }
+
+    function countZombie() public view returns (uint) {
+        uint x = zombies.length;
+        return x;
     }
 
 }
