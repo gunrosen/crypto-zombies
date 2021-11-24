@@ -8,30 +8,35 @@ import "./ZombieAttack.sol";
 contract ZombieOwnership is ZombieAttack, ERC721 {
     using SafeMath for uint256;
 
+    string public uri;
     mapping (uint => address) zombieApprovals;
 
-    function balanceOf(address _owner) override external view returns (uint256) {
+    constructor() ERC721("Hulk NFT", "H-NFT") {
+
+    }
+
+    function balanceOf(address _owner) public override view returns (uint256) {
         return ownerZombieCount[_owner];
     }
 
-    function ownerOf(uint256 _tokenId) override external view returns (address) {
+    function ownerOf(uint256 _tokenId) public override  view returns (address) {
         return zombieToOwner[_tokenId];
     }
 
     // @dev: transfer token
-    function _transfer(address _from, address _to, uint256 _tokenId) private {
+    function _transfer(address _from, address _to, uint256 _tokenId) override internal{
         ownerZombieCount[_to] = ownerZombieCount[_to].add(1);
         ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].sub(1);
         zombieToOwner[_tokenId] = _to;
         emit Transfer(_from, _to, _tokenId);
     }
 
-    function transferFrom(address _from, address _to, uint256 _tokenId) external payable {
+    function transferFrom(address _from, address _to, uint256 _tokenId) public override {
         require (zombieToOwner[_tokenId] == msg.sender || zombieApprovals[_tokenId] == msg.sender);
         _transfer(_from, _to, _tokenId);
     }
 
-    function approve(address _approved, uint256 _tokenId) external payable onlyOwnerOf(_tokenId) {
+    function approve(address _approved, uint256 _tokenId) public override onlyOwnerOf(_tokenId) {
         zombieApprovals[_tokenId] = _approved;
         emit Approval(msg.sender, _approved, _tokenId);
     }
