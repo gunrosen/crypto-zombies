@@ -1,38 +1,154 @@
-.App {
-  text-align: center;
+.app-container{
+  height: 100vh;
+  width: 100vw;
+}
+.zombie-preview{
+  height: 84vh;
+  width: 47vh;
+  background-size: cover;
+  background-image: url('./assets/tester-bg2x.png');
+  position: relative;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.zombie-char{
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.zombie-parts{
+  position: absolute;
+  margin-left: -2vh;
+  margin-top: 31vh;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.left-feet{
+  width: 4vh;
+  position: absolute;
+  left: 18.3vh;
+  top: 30vh;
 }
 
-.App-link {
-  color: #61dafb;
+.right-feet{
+  width: 3.3vh;
+  position: absolute;
+  left: 22.3vh;
+  top: 30.3vh;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.left-leg{
+  width: 4vh;
+  position: absolute;
+  left: 18.3vh;
+  top: 27vh;
 }
+
+.right-leg{
+  width: 3.3vh;
+  position: absolute;
+  left: 22.3vh;
+  top: 27.6vh;
+}
+
+.left-thigh{
+  width: 6vh;
+  position: absolute;
+  left: 17.3vh;
+  top: 22vh;
+}
+
+.right-thigh{
+  width: 6vh;
+  position: absolute;
+  left: 20.4vh;
+  top: 22vh;
+}
+
+.left-forearm{
+  width: 4vh;
+  position: absolute;
+  left: 22.3vh;
+  top: 20vh;
+}
+
+.right-forearm{
+  width: 4vh;
+  position: absolute;
+  left: 26.4vh;
+  top: 20vh;
+}
+
+.right-upper-arm{
+  width: 6vh;
+  position: absolute;
+  left: 23.4vh;
+  top: 16vh;
+}
+
+.torso{
+  width: 13vh;
+  position: absolute;
+  left: 15.6vh;
+  top: 13vh;
+}
+
+.cat-legs{
+  width: 10vh;
+  position: absolute;
+  left: 15.4vh;
+  top: 18vh;
+}
+
+.left-upper-arm{
+  width: 6vh;
+  position: absolute;
+  left: 19.3vh;
+  top: 16vh;
+}
+
+.left-hand{
+  width: 4vh;
+  position: absolute;
+  left: 24.3vh;
+  top: 19vh;
+}
+
+.right-hand{
+  width: 4vh;
+  position: absolute;
+  left: 28.4vh;
+  top: 19vh;
+}
+
+.mouth{
+  width: 6vh;
+  position: absolute;
+  left: 26.6vh;
+  top: 15vh;
+}
+
+.zombie-parts .head {
+  width: 28vh;
+  position: absolute;
+  left: 13vh;
+  top: -4vh;
+}
+.zombie-parts .eye{
+  width: 13vh;
+  position: absolute;
+  left: 23vh;
+  top: 8vh;
+}
+.zombie-parts .shirt {
+  width: 13vh;
+  position: absolute;
+  left: 15.6vh;
+  top: 13vh
+}
+
+.zombie-parts .eye,.zombie-parts .head,.zombie-parts .shirt {
+  display: none
+}
+
+.zombie-parts.eye-visible-1 .eye-part-1,.zombie-parts.eye-visible-2 .eye-part-2,.zombie-parts.eye-visible-3 .eye-part-3,.zombie-parts.eye-visible-4 .eye-part-4,.zombie-parts.eye-visible-5 .eye-part-5,.zombie-parts.eye-visible-6 .eye-part-6,.zombie-parts.eye-visible-7 .eye-part-7,.zombie-parts.eye-visible-8 .eye-part-8,.zombie-parts.eye-visible-9 .eye-part-9,.zombie-parts.eye-visible-10 .eye-part-10,.zombie-parts.eye-visible-11 .eye-part-11,.zombie-parts.head-visible-1 .head-part-1,.zombie-parts.head-visible-2 .head-part-2,.zombie-parts.head-visible-3 .head-part-3,.zombie-parts.head-visible-4 .head-part-4,.zombie-parts.head-visible-5 .head-part-5,.zombie-parts.head-visible-6 .head-part-6,.zombie-parts.head-visible-7 .head-part-7,.zombie-parts.head-visible-8 .head-part-8,.zombie-parts.shirt-visible-1 .shirt-part-1,.zombie-parts.shirt-visible-2 .shirt-part-2,.zombie-parts.shirt-visible-3 .shirt-part-3,.zombie-parts.shirt-visible-4 .shirt-part-4,.zombie-parts.shirt-visible-5 .shirt-part-5,.zombie-parts.shirt-visible-6 .shirt-part-6 {
+  display: inherit
+}
+
