@@ -1,11 +1,11 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.4;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./ZombieAttack.sol";
 
-contract ZombieOwnership is ZombieAttack, ERC721 {
+contract ZombieOwnership is ZombieAttack, ERC721URIStorage {
     using SafeMath for uint256;
 
     string public uri;
@@ -13,6 +13,16 @@ contract ZombieOwnership is ZombieAttack, ERC721 {
 
     constructor() ERC721("Hulk NFT", "H-NFT") {
 
+    }
+
+    function mintItem(address player, string memory tokenURI)
+    public
+    returns (uint256)
+    {
+        uint256 newItemId = zombies.length + 1;
+        _mint(player, newItemId);
+        _setTokenURI(newItemId, tokenURI);
+        return newItemId;
     }
 
     function balanceOf(address _owner) public override view returns (uint256) {
