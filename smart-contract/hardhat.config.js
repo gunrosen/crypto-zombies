@@ -1,4 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
+const {utils} = require("ethers");
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -19,6 +20,17 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 module.exports = {
   paths: {
     artifacts: '../frontend/src/artifacts',
+  },
+  defaultNetwork: "hardhat",
+  networks: {
+    hardhat: {
+      chainId: 1337,
+      accounts: {
+        accountsBalance: utils.parseEther("100").toString(),
+      },
+      gasPrice: 0.000001,
+      initialBaseFeePerGas: 0.000001
+    }
   },
   solidity: "0.8.4",
 };
