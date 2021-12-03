@@ -8,21 +8,21 @@ import "./ZombieAttack.sol";
 contract ZombieOwnership is ZombieAttack, ERC721URIStorage {
     using SafeMath for uint256;
 
-    string public uri;
     mapping (uint => address) zombieApprovals;
 
-    constructor() ERC721("Hulk NFT", "H-NFT") {
+    constructor() ERC721("Hulk NFT Zombie", "H-NFT") {
 
     }
 
-    function mintItem(address player, string memory tokenURI)
+    // @dev: owner mint for player
+    function mintZombieToPlayer(address playerAddress, string memory name)
     public
+    onlyOwner
     returns (uint256)
     {
-        uint256 newItemId = zombies.length + 1;
-        _mint(player, newItemId);
-        _setTokenURI(newItemId, tokenURI);
-        return newItemId;
+        uint256 id = createRandomZombie(name);
+        transferFrom(owner(), playerAddress, id);
+        return id;
     }
 
     function balanceOf(address _owner) public override view returns (uint256) {

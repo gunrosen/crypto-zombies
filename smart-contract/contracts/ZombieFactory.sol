@@ -5,6 +5,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "hardhat/console.sol";
 
+// @dev: a Factory, which define some rules:
+// 1. Struct of a Zombie, create random zombie base on name
+// 2. Zombie owner: each owner can generate new exactly one zombie,
 contract ZombieFactory is Ownable {
     using SafeMath for uint256;
 
@@ -41,12 +44,14 @@ contract ZombieFactory is Ownable {
         return rand % dnaModulus;
     }
 
-    // @dev: user can create only one zombie
-    function createRandomZombie(string memory _name) public {
-        require(ownerZombieCount[msg.sender] == 0, "ZombieFactory: You already have zombie.");
+    // @dev: user can create only one zombie except owner
+    function createRandomZombie(string memory _name) public returns (uint){
+        require(ownerZombieCount[msg.sender] == 0 || owner() == msg.sender, "ZombieFactory: You already have zombie.");
         uint randDna = _generateRandomDna(_name);
         randDna = randDna - randDna % 100;
         _createZombie(_name, randDna);
+        uint id = zombies.length - 1;
+        return id;
     }
 
     function countZombie() public view returns (uint) {
@@ -54,4 +59,8 @@ contract ZombieFactory is Ownable {
         return x;
     }
 
+    function updateCoolDownTime(uint _updateCooldownTime) public onlyOwner returns (uint) {
+        cooldownTime = _updateCooldownTime;
+        return _updateCooldownTime;
+    }
 }

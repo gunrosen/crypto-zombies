@@ -19,6 +19,8 @@ interface KittyInterface {
 }
 
 // @dev: Feature to eating things. Currently, zombie can eat kitty
+// Game rule: zombie eat and multiply if cooldown time over
+// Can eat kitty and multiply
 contract ZombieFeeding is ZombieFactory {
     KittyInterface kittyContract;
 

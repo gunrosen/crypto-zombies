@@ -4,6 +4,9 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./ZombieFeeding.sol";
 
+// @dev Helper will help change name if level is above
+// and change DNA
+// level up if user pay for it
 contract ZombieHelper is ZombieFeeding{
     using SafeMath for uint256;
 

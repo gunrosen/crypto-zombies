@@ -28,8 +28,8 @@ module.exports = {
       accounts: {
         accountsBalance: utils.parseEther("100").toString(),
       },
-      gasPrice: 0.000001,
-      initialBaseFeePerGas: 0.000001
+      gasPrice: 0,
+      initialBaseFeePerGas: 0
     }
   },
   solidity: "0.8.4",

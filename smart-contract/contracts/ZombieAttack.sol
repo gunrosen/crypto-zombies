@@ -4,6 +4,7 @@ pragma solidity ^0.8.4;
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "./ZombieHelper.sol";
 
+// @dev: logic to attack another zombie
 contract ZombieAttack is ZombieHelper {
     using SafeMath for uint256;
 

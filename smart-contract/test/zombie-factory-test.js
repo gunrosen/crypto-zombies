@@ -26,7 +26,21 @@ describe("ZombieFactory", async () => {
     });
 
     it("User can not create more than one zombie", async () => {
-        await zombieFactory.createRandomZombie("test");
-        expect(zombieFactory.createRandomZombie("test2")).to.be.rejectedWith(Error);
+        await zombieFactory.connect(user).createRandomZombie("test");
+        expect(zombieFactory.connect(user).createRandomZombie("test2")).to.be.rejectedWith(Error);
     });
+
+    it("Owner can create many zombie", async () => {
+        await zombieFactory.connect(owner).createRandomZombie("test");
+        await zombieFactory.connect(owner).createRandomZombie("test1");
+        await zombieFactory.connect(owner).createRandomZombie("test2");
+        expect(await zombieFactory.countZombie()).to.equal(3);
+    })
+
+    it("Owner can change cooldown time", async () => {
+        await zombieFactory.connect(owner).updateCoolDownTime(60);
+    })
+    it("User can not change cooldown time", async () => {
+        expect(zombieFactory.connect(user).updateCoolDownTime(60)).revertedWith(Error);
+    })
 });
