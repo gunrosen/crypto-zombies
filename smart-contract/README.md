@@ -10,7 +10,7 @@ npx hardhat compile
 npx hardhat clean
 npx hardhat test
 npx hardhat node
-npx hardhat run  scripts/deploy-zombie-ownership.js --network localhost
+npx hardhat run  scripts/deploy-zombie.js --network localhost
 npx hardhat help
 ```
 
