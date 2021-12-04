@@ -29,6 +29,24 @@ module.exports = {
         // We will use TypeScript's types for component props instead
         'react/prop-types': 'off',
         // We don't want unused vars
-        '@typescript-eslint/no-unused-vars': ['error'],
+        '@typescript-eslint/no-unused-vars': [
+            'error',
+            {
+                vars: 'all',
+                args: 'after-used',
+                argsIgnorePattern: '_',
+                ignoreRestSiblings: false,
+                varsIgnorePattern: '_',
+            },
+        ],
+
+        'jsx-a11y/anchor-is-valid': [
+            'error',
+            {
+                components: ['Link'],
+                specialLink: ['hrefLeft', 'hrefRight'],
+                aspects: ['invalidHref', 'preferButton'],
+            },
+        ],
     },
 };
