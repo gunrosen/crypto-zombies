@@ -18,29 +18,29 @@ const MainScreen: React.FC = () => {
                         aria-expanded="false"
                         aria-label="Toggle navigation"
                     >
-                        <span className="navbar-toggler-icon" />
+                        <span className="navbar-toggler-icon"/>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#!">
+                                <a className="nav-link active" aria-current="page" href="/">
                                     Home
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#!">
+                                <a className="nav-link" href="/my-account">
                                     My Account
                                 </a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#!">
+                                <a className="nav-link" href="/marketplace">
                                     Marketplace
                                 </a>
                             </li>
                         </ul>
                         <form className="d-flex">
                             <button className="btn btn-outline-dark" type="submit">
-                                <i className="bi-cart-fill me-1" />
+                                <i className="bi-cart-fill me-1"/>
                                 Connect Wallet
                                 <span className="badge bg-dark text-white ms-1 rounded-pill">
                                     0
@@ -60,9 +60,7 @@ const MainScreen: React.FC = () => {
                         <p className="lead fw-normal text-white-50 mb-0">
                             Whitelist end in
                         </p>
-                        <p>
-                            <WhitelistCountDown />
-                        </p>
+                        <WhitelistCountDown/>
                         <button type="button" className="btn btn-outline-secondary text-white">
                             APPLY WHITELIST
                         </button>
@@ -116,11 +114,11 @@ const MainScreen: React.FC = () => {
                                     <div className="text-center">
                                         <h5 className="fw-bolder">Special Item</h5>
                                         <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
                                         </div>
                                         <span className="text-muted text-decoration-line-through">
                                             $20.00
@@ -184,11 +182,11 @@ const MainScreen: React.FC = () => {
                                     <div className="text-center">
                                         <h5 className="fw-bolder">Popular Item</h5>
                                         <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
                                         </div>
                                         $40.00
                                     </div>
@@ -280,11 +278,11 @@ const MainScreen: React.FC = () => {
                                     <div className="text-center">
                                         <h5 className="fw-bolder">Special Item</h5>
                                         <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
                                         </div>
                                         <span className="text-muted text-decoration-line-through">
                                             $20.00
@@ -314,11 +312,11 @@ const MainScreen: React.FC = () => {
                                     <div className="text-center">
                                         <h5 className="fw-bolder">Popular Item</h5>
                                         <div className="d-flex justify-content-center small text-warning mb-2">
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
-                                            <div className="bi-star-fill" />
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
+                                            <div className="bi-star-fill"/>
                                         </div>
                                         $40.00
                                     </div>
