@@ -1,0 +1,17 @@
+.container{
+    height: 92px;
+    width: 300px;
+ margin: auto;
+
+}
+
+.rectangle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 36px;
+    height: 36px;
+    background: #D29C46;
+    border-radius: 5px;
+}

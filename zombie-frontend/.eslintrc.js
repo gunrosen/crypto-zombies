@@ -41,7 +41,7 @@ module.exports = {
         ],
 
         'jsx-a11y/anchor-is-valid': [
-            'error',
+            'warn',
             {
                 components: ['Link'],
                 specialLink: ['hrefLeft', 'hrefRight'],
