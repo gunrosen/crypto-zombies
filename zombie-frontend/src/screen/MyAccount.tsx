@@ -1,6 +1,10 @@
 import React from 'react';
+import NavigationBar from "../components/NavigationBar";
 
 const MyAccount: React.FC = () => {
-    return <h1>MyAccount</h1>;
+    return <div className="container">
+        <NavigationBar/>
+
+    </div>
 };
 export default MyAccount;
