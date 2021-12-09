@@ -63,4 +63,8 @@ contract ZombieFactory is Ownable {
         cooldownTime = _updateCooldownTime;
         return _updateCooldownTime;
     }
+
+    function getCoolDownTime() public view returns (uint) {
+        return cooldownTime;
+    }
 }

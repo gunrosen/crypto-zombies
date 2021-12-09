@@ -4,7 +4,7 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const {ethers, waffle} = require("hardhat");
 
-describe.only("ZombieOwnership", async () => {
+describe("ZombieOwnership", async () => {
     let owner, user1, user2, user3;
     let zombieOwnershipContract;
 

@@ -1,5 +1,6 @@
 var chai = require('chai');
 var expect = chai.expect;
+var should = require('chai').should();
 var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const {ethers, waffle} = require("hardhat");
@@ -39,8 +40,11 @@ describe("ZombieFactory", async () => {
 
     it("Owner can change cooldown time", async () => {
         await zombieFactory.connect(owner).updateCoolDownTime(60);
+        expect(await zombieFactory.getCoolDownTime()).to.equal(60);
     })
+
     it("User can not change cooldown time", async () => {
-        expect(zombieFactory.connect(user).updateCoolDownTime(60)).revertedWith(Error);
+        const promise = zombieFactory.connect(user).updateCoolDownTime(60);
+        promise.should.be.rejectedWith(Error);
     })
 });
