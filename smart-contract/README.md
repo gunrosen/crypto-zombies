@@ -13,7 +13,19 @@ npx hardhat node
 npx hardhat run  scripts/deploy-zombie.js --network localhost
 npx hardhat help
 ```
+# Deploy testnet ropsten
+```
+npx hardhat run scripts/deploy-zombie.js --network ropsten
+```
+## Logs 
+```
+Owner address 0xc5Ad7f45b2b235A2a62014D07dDa0a4A33120480
+User1 address 0x8246fEC2e2d7A840F231175d653564d065a9494B
+ZombieOwnership contract deployed to: 0xB199bf577BdDB0002Eeec24866b416bfD49bc6a4
+Owner generated 10 zombies for him. He is rich
+Owner gave away 2 zombies for user1. Owner is generous
 
+```
 # Local accounts for me 
 ```
 Account #0: 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 (10000 ETH)
@@ -77,3 +89,5 @@ Account #19: 0x8626f6940e2eb28930efb4cef49b2d1f2c9c1199 (100 ETH)
 Private Key: 0xdf57089febbacf7ba0bc227dafbffa9fc08a93fdc68e1e42411a14efcf23656e
 
 ```
+
+

@@ -1,5 +1,7 @@
+require('dotenv').config();
 require("@nomiclabs/hardhat-waffle");
 const {utils} = require("ethers");
+const {API_URL, OWNER_PRIVATE_KEY, USER_PRIVATE_KEY} = process.env;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -41,6 +43,10 @@ module.exports = {
       },
       gasPrice: 0,
       initialBaseFeePerGas: 0
+    },
+    ropsten: {
+      url: API_URL,
+      accounts: [`${OWNER_PRIVATE_KEY}`, `${USER_PRIVATE_KEY}`]
     }
   },
   solidity: "0.8.4",

@@ -3,14 +3,14 @@ const {ethers} = require("ethers");
 
 async function main() {
     const [owner, user1, user2, user3] = await hre.ethers.getSigners();
+    console.log("Owner address", owner.address);
+    console.log("User1 address", user1.address);
 
     // We get the contract to deploy
     const ZombieOwnership = await hre.ethers.getContractFactory("ZombieOwnership");
     const zombieOwnershipContract = await ZombieOwnership.deploy();
     await zombieOwnershipContract.deployed();
 
-    console.log("Owner address", owner.address);
-    console.log("User1 address", user1.address);
     console.log("ZombieOwnership contract deployed to:", zombieOwnershipContract.address);
 
     // owner generate 10 zombies
