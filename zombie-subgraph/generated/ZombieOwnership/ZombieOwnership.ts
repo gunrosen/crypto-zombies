@@ -79,12 +79,16 @@ export class NewZombie__Params {
     return this._event.parameters[0].value.toBigInt();
   }
 
+  get owner(): Address {
+    return this._event.parameters[1].value.toAddress();
+  }
+
   get name(): string {
-    return this._event.parameters[1].value.toString();
+    return this._event.parameters[2].value.toString();
   }
 
   get dna(): BigInt {
-    return this._event.parameters[2].value.toBigInt();
+    return this._event.parameters[3].value.toBigInt();
   }
 }
 
@@ -211,6 +215,29 @@ export class ZombieOwnership extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  createRandomZombie(_name: string): BigInt {
+    let result = super.call(
+      "createRandomZombie",
+      "createRandomZombie(string):(uint256)",
+      [ethereum.Value.fromString(_name)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_createRandomZombie(_name: string): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "createRandomZombie",
+      "createRandomZombie(string):(uint256)",
+      [ethereum.Value.fromString(_name)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   getApproved(tokenId: BigInt): Address {
     let result = super.call("getApproved", "getApproved(uint256):(address)", [
       ethereum.Value.fromUnsignedBigInt(tokenId)
@@ -230,6 +257,29 @@ export class ZombieOwnership extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  getCoolDownTime(): BigInt {
+    let result = super.call(
+      "getCoolDownTime",
+      "getCoolDownTime():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getCoolDownTime(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getCoolDownTime",
+      "getCoolDownTime():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   getZombiesByOwner(_owner: Address): Array<BigInt> {
@@ -279,6 +329,38 @@ export class ZombieOwnership extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  mintZombieToPlayer(playerAddress: Address, name: string): BigInt {
+    let result = super.call(
+      "mintZombieToPlayer",
+      "mintZombieToPlayer(address,string):(uint256)",
+      [
+        ethereum.Value.fromAddress(playerAddress),
+        ethereum.Value.fromString(name)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_mintZombieToPlayer(
+    playerAddress: Address,
+    name: string
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "mintZombieToPlayer",
+      "mintZombieToPlayer(address,string):(uint256)",
+      [
+        ethereum.Value.fromAddress(playerAddress),
+        ethereum.Value.fromString(name)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   name(): string {
@@ -387,19 +469,29 @@ export class ZombieOwnership extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  uri(): string {
-    let result = super.call("uri", "uri():(string)", []);
+  updateCoolDownTime(_updateCooldownTime: BigInt): BigInt {
+    let result = super.call(
+      "updateCoolDownTime",
+      "updateCoolDownTime(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_updateCooldownTime)]
+    );
 
-    return result[0].toString();
+    return result[0].toBigInt();
   }
 
-  try_uri(): ethereum.CallResult<string> {
-    let result = super.tryCall("uri", "uri():(string)", []);
+  try_updateCoolDownTime(
+    _updateCooldownTime: BigInt
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "updateCoolDownTime",
+      "updateCoolDownTime(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(_updateCooldownTime)]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toString());
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   zombieToOwner(param0: BigInt): Address {
@@ -657,6 +749,10 @@ export class CreateRandomZombieCall__Outputs {
   constructor(call: CreateRandomZombieCall) {
     this._call = call;
   }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
+  }
 }
 
 export class FeedOnKittyCall extends ethereum.Call {
@@ -720,6 +816,44 @@ export class LevelUpCall__Outputs {
 
   constructor(call: LevelUpCall) {
     this._call = call;
+  }
+}
+
+export class MintZombieToPlayerCall extends ethereum.Call {
+  get inputs(): MintZombieToPlayerCall__Inputs {
+    return new MintZombieToPlayerCall__Inputs(this);
+  }
+
+  get outputs(): MintZombieToPlayerCall__Outputs {
+    return new MintZombieToPlayerCall__Outputs(this);
+  }
+}
+
+export class MintZombieToPlayerCall__Inputs {
+  _call: MintZombieToPlayerCall;
+
+  constructor(call: MintZombieToPlayerCall) {
+    this._call = call;
+  }
+
+  get playerAddress(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+
+  get name(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+}
+
+export class MintZombieToPlayerCall__Outputs {
+  _call: MintZombieToPlayerCall;
+
+  constructor(call: MintZombieToPlayerCall) {
+    this._call = call;
+  }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
   }
 }
 
@@ -988,6 +1122,40 @@ export class TransferOwnershipCall__Outputs {
 
   constructor(call: TransferOwnershipCall) {
     this._call = call;
+  }
+}
+
+export class UpdateCoolDownTimeCall extends ethereum.Call {
+  get inputs(): UpdateCoolDownTimeCall__Inputs {
+    return new UpdateCoolDownTimeCall__Inputs(this);
+  }
+
+  get outputs(): UpdateCoolDownTimeCall__Outputs {
+    return new UpdateCoolDownTimeCall__Outputs(this);
+  }
+}
+
+export class UpdateCoolDownTimeCall__Inputs {
+  _call: UpdateCoolDownTimeCall;
+
+  constructor(call: UpdateCoolDownTimeCall) {
+    this._call = call;
+  }
+
+  get _updateCooldownTime(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class UpdateCoolDownTimeCall__Outputs {
+  _call: UpdateCoolDownTimeCall;
+
+  constructor(call: UpdateCoolDownTimeCall) {
+    this._call = call;
+  }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
   }
 }
 

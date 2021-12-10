@@ -32,7 +32,7 @@ task(
  */
 module.exports = {
   paths: {
-    artifacts: '../frontend/src/artifacts',
+    artifacts: './artifacts',
   },
   defaultNetwork: "hardhat",
   networks: {

@@ -26,10 +26,10 @@ dataSources:
           handler: handleApproval
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
-        - event: NewZombie(uint256,string,uint256)
+        - event: NewZombie(uint256,indexed address,string,uint256)
           handler: handleNewZombie
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: ./src/mapping-zombie.ts

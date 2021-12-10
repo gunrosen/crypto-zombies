@@ -11,7 +11,7 @@ import "hardhat/console.sol";
 contract ZombieFactory is Ownable {
     using SafeMath for uint256;
 
-    event NewZombie(uint zombieId, string name, uint dna);
+    event NewZombie(uint zombieId, address indexed owner, string name, uint dna);
 
     uint dnaDigits = 16;
     uint dnaModulus = 10 ** dnaDigits;
@@ -36,7 +36,7 @@ contract ZombieFactory is Ownable {
         uint id = zombies.length - 1;
         zombieToOwner[id] = msg.sender;
         ownerZombieCount[msg.sender] = ownerZombieCount[msg.sender].add(1);
-        emit NewZombie(id, _name, _dna);
+        emit NewZombie(id, msg.sender, _name, _dna);
     }
 
     function _generateRandomDna(string memory _str) private view returns (uint) {

@@ -1,6 +1,11 @@
-type ExampleEntity @entity {
+type User @entity {
+    id: ID!
+    zombies: [Zombie!]! @derivedFrom(field: "owner")
+}
+
+type Zombie @entity {
   id: ID!
-  count: BigInt!
-  owner: Bytes! # address
-  approved: Bytes! # address
+  name: String! #name
+  dna: BigInt! #dna
+  owner: User! #owner
 }
