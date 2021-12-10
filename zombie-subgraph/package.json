@@ -1,24 +1,23 @@
 {
-  "name": "crypto-zombie-subgraph",
-  "version": "0.1.0",
+  "name": "subgraph",
+  "license": "UNLICENSED",
   "scripts": {
-    "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
-    "create": "graph create hulk/crypto-zombie-subgraph --node https://api.thegraph.com/deploy/",
-    "create-local": "graph create hulk/crypto-zombie-subgraph --node http://127.0.0.1:8020",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy hulk/crypto-zombie-subgraph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-local": "graph deploy hulk/crypto-zombie-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
-  },
-  "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.23.2",
-    "@graphprotocol/graph-ts": "^0.23.1"
+
+    "prepare:mainnet": "mustache config/mainnet.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:local": "mustache config/local.json subgraph.template.yaml > subgraph.yaml",
+
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ crypto-zombie/subgraph",
+    "create-local": "graph create --node http://localhost:8020/ crypto-zombie/subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ crypto-zombie/subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 crypto-zombie/subgraph"
   },
   "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
-    "truffle": "^5.0.4",
-    "truffle-contract": "^4.0.5",
-    "truffle-hdwallet-provider": "^1.0.4"
+    "@graphprotocol/graph-cli": "0.25.1",
+    "@graphprotocol/graph-ts": "0.24.1"
+  },
+  "devDependencies": {
+    "mustache": "^4.2.0"
   }
 }
