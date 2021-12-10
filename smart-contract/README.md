@@ -9,7 +9,7 @@ npx hardhat accounts
 npx hardhat compile
 npx hardhat clean
 npx hardhat test
-npx hardhat node
+npx hardhat node --hostname 0.0.0.0
 npx hardhat run  scripts/deploy-zombie.js --network localhost
 npx hardhat help
 ```
