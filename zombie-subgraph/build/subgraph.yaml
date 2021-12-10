@@ -1,12 +1,12 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: ZombieOwnership
     network: mainnet
     source:
-      address: '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
       abi: ZombieOwnership
     mapping:
       kind: ethereum/events
@@ -20,7 +20,7 @@ dataSources:
         - Transfer
       abis:
         - name: ZombieOwnership
-          file: ./abis/ZombieOwnership.json
+          file: ZombieOwnership/abis/ZombieOwnership.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,indexed uint256)
           handler: handleApproval
@@ -32,4 +32,4 @@ dataSources:
           handler: handleOwnershipTransferred
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: ZombieOwnership/ZombieOwnership.wasm
