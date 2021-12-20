@@ -10,14 +10,23 @@ contract ZombieOwnership is ZombieAttack, ERC721URIStorage {
 
     mapping (uint => address) zombieApprovals;
 
-    constructor() ERC721("Hulk NFT Zombie", "H-NFT") {
+    constructor(address minter) ERC721("Hulk NFT Zombie", "H-NFT") {
+        _setupRole(MINTER_ROLE, minter);
+    }
 
+    function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, AccessControl) returns (bool) {
+        return super.supportsInterface(interfaceId);
+    }
+
+    modifier onlyOwnerOrMinter() {
+        require(owner() == msg.sender || hasRole(MINTER_ROLE, msg.sender));
+        _;
     }
 
     // @dev: owner mint for player
     function mintZombieToPlayer(address playerAddress, string memory name)
     public
-    onlyOwner
+    onlyOwnerOrMinter
     returns (uint256)
     {
         uint256 id = createRandomZombie(name);

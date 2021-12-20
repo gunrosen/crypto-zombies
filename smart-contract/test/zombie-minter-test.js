@@ -4,7 +4,7 @@ var chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const {ethers, waffle} = require("hardhat");
 
-describe("ZombieOwnership", async () => {
+describe("ZombieOwnership - minter mint zombie", async () => {
     let owner, user1, minter, user3;
     let zombieOwnershipContract;
 
@@ -22,36 +22,36 @@ describe("ZombieOwnership", async () => {
         expect(await zombieOwnershipContract.countZombie()).to.equal(0);
     });
 
-    it("owner can create a zombie nft", async () => {
-        await zombieOwnershipContract.connect(owner).createRandomZombie("test");
+    it("minter can create a zombie nft", async () => {
+        await zombieOwnershipContract.connect(minter).createRandomZombie("test");
         expect(await zombieOwnershipContract.countZombie()).to.equal(1);
-        const listNFT = await zombieOwnershipContract.getZombiesByOwner(owner.address);
+        const listNFT = await zombieOwnershipContract.getZombiesByOwner(minter.address);
         expect(listNFT.length).to.equal(1);
-        expect(await zombieOwnershipContract.balanceOf(owner.address)).to.equal(1);
+        expect(await zombieOwnershipContract.balanceOf(minter.address)).to.equal(1);
     })
 
-    it("owner can create many zombie nft", async () => {
-        await zombieOwnershipContract.connect(owner).createRandomZombie("test");
-        await zombieOwnershipContract.connect(owner).createRandomZombie("test1");
+    it("minter can create many zombie nft", async () => {
+        await zombieOwnershipContract.connect(minter).createRandomZombie("test");
+        await zombieOwnershipContract.connect(minter).createRandomZombie("test1");
         expect(await zombieOwnershipContract.countZombie()).to.equal(2);
-        const listNFT = await zombieOwnershipContract.getZombiesByOwner(owner.address);
+        const listNFT = await zombieOwnershipContract.getZombiesByOwner(minter.address);
         expect(listNFT.length).to.equal(2);
-        expect(await zombieOwnershipContract.balanceOf(owner.address)).to.equal(2);
+        expect(await zombieOwnershipContract.balanceOf(minter.address)).to.equal(2);
     })
 
-    it("owner give user1 a zombie when user1 does not have any zombie", async () => {
-        await zombieOwnershipContract.connect(owner).createRandomZombie("test");
+    it("minter give user1 a zombie when user1 does not have any zombie", async () => {
+        await zombieOwnershipContract.connect(minter).createRandomZombie("test");
         expect(await zombieOwnershipContract.countZombie()).to.equal(1);
-        await zombieOwnershipContract.connect(owner).mintZombieToPlayer(user1.address, "test2");
+        await zombieOwnershipContract.connect(minter).mintZombieToPlayer(user1.address, "test2");
         expect(await zombieOwnershipContract.countZombie()).to.equal(2);
         expect(await zombieOwnershipContract.balanceOf(user1.address)).to.equal(1);
     })
 
-    it("owner give user1 a zombie when user1 have a zombie", async () => {
-        await zombieOwnershipContract.connect(owner).createRandomZombie("test");
+    it("minter give user1 a zombie when user1 have a zombie", async () => {
+        await zombieOwnershipContract.connect(minter).createRandomZombie("test");
         await zombieOwnershipContract.connect(user1).createRandomZombie("test1");
         expect(await zombieOwnershipContract.countZombie()).to.equal(2);
-        await zombieOwnershipContract.connect(owner).mintZombieToPlayer(user1.address, "test2");
+        await zombieOwnershipContract.connect(minter).mintZombieToPlayer(user1.address, "test2");
         expect(await zombieOwnershipContract.countZombie()).to.equal(3);
         expect(await zombieOwnershipContract.balanceOf(user1.address)).to.equal(2);
     })

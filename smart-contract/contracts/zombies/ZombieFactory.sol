@@ -2,13 +2,17 @@
 pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "hardhat/console.sol";
 
 // @dev: a Factory, which define some rules:
 // 1. Struct of a Zombie, create random zombie base on name
 // 2. Zombie owner: each owner can generate new exactly one zombie,
-contract ZombieFactory is Ownable {
+// 3. Marketplace is a minter, who can mint and sell zombie on marketplace
+contract ZombieFactory is Ownable, AccessControl {
+    // Create a new role identifier for the minter role
+    bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     using SafeMath for uint256;
 
     event NewZombie(uint zombieId, address indexed owner, string name, uint dna);
@@ -46,7 +50,7 @@ contract ZombieFactory is Ownable {
 
     // @dev: user can create only one zombie except owner
     function createRandomZombie(string memory _name) public returns (uint){
-        require(ownerZombieCount[msg.sender] == 0 || owner() == msg.sender, "ZombieFactory: You already have zombie.");
+        require(ownerZombieCount[msg.sender] == 0 || owner() == msg.sender || hasRole(MINTER_ROLE, msg.sender), "ZombieFactory: You already have zombie.");
         uint randDna = _generateRandomDna(_name);
         randDna = randDna - randDna % 100;
         _createZombie(_name, randDna);
