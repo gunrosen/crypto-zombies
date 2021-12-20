@@ -6,6 +6,7 @@
     "build": "graph build",
 
     "prepare:mainnet": "mustache config/mainnet.json subgraph.template.yaml > subgraph.yaml",
+    "prepare:ropsten": "mustache config/ropsten.json subgraph.template.yaml > subgraph.yaml",
     "prepare:local": "mustache config/local.json subgraph.template.yaml > subgraph.yaml",
 
     "deploy": "graph deploy --node https://api.thegraph.com/deploy/ crypto-zombie/subgraph",

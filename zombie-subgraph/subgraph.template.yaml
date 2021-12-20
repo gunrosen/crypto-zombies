@@ -8,6 +8,7 @@ dataSources:
     source:
       address: '{{address}}'
       abi: ZombieOwnership
+      startBlock: 	11582671
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
