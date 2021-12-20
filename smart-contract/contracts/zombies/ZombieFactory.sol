@@ -13,6 +13,7 @@ import "hardhat/console.sol";
 contract ZombieFactory is Ownable, AccessControl {
     // Create a new role identifier for the minter role
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    bytes32 public constant ADMIN_ROLE = keccak256("MINTER_ADMIN");
     using SafeMath for uint256;
 
     event NewZombie(uint zombieId, address indexed owner, string name, uint dna);

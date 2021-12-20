@@ -11,6 +11,8 @@ contract ZombieOwnership is ZombieAttack, ERC721URIStorage {
     mapping (uint => address) zombieApprovals;
 
     constructor(address minter) ERC721("Hulk NFT Zombie", "H-NFT") {
+        _setRoleAdmin(MINTER_ROLE, ADMIN_ROLE);
+        _setupRole(ADMIN_ROLE, msg.sender);
         _setupRole(MINTER_ROLE, minter);
     }
 

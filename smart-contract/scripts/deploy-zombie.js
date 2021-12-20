@@ -2,22 +2,23 @@ const hre = require("hardhat");
 const {ethers} = require("ethers");
 
 async function main() {
-    const [owner, user1, user2, user3] = await hre.ethers.getSigners();
+    const [owner, user1, minter, user3] = await hre.ethers.getSigners();
     console.log("Owner address", owner.address);
-    console.log("User1 address", user1.address);
+    console.log("User address", user1.address);
+    console.log("Minter address", minter.address);
 
     // We get the contract to deploy
     const ZombieOwnership = await hre.ethers.getContractFactory("ZombieOwnership");
-    const zombieOwnershipContract = await ZombieOwnership.deploy();
+    const zombieOwnershipContract = await ZombieOwnership.deploy(minter.address);
     await zombieOwnershipContract.deployed();
 
     console.log("ZombieOwnership contract deployed to:", zombieOwnershipContract.address);
 
-    // owner generate 10 zombies
-    for (let i=0; i < 10; i++){
+    // owner generate 3 zombies
+    for (let i=0; i < 3; i++){
         await zombieOwnershipContract.createRandomZombie("Zombie "+ i);
     }
-    console.log("Owner generated 10 zombies for him. He is rich");
+    console.log("Owner generated 3 zombies for him. He is rich");
 
     // owner give user1 2 zombies
     await zombieOwnershipContract.mintZombieToPlayer(user1.address, "Gift 1 for user 1");
